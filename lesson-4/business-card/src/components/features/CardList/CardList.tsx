@@ -1,8 +1,13 @@
+import useFetch from "../../../hooks/use-fetch";
 import CardItem from "../../atoms/CardItem";
-import useGetCards from "./use-get-cards";
+
+type CardType = {
+  id: number;
+  name: string;
+};
 
 export default function CardList() {
-  const [cards, setCards] = useGetCards();
+  const [cards, setCards] = useFetch<CardType[]>([], "/cards", "GET");
 
   return (
     <div>
