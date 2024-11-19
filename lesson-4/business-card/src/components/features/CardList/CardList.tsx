@@ -1,10 +1,7 @@
 import useFetch from "../../../hooks/use-fetch";
+import { useCardsStore } from "../../../store/use-cards-store";
+import { CardType } from "../../../types/CardType";
 import CardItem from "../../atoms/CardItem";
-
-type CardType = {
-  id: number;
-  name: string;
-};
 
 export default function CardList() {
   // First iteration:
@@ -19,6 +16,14 @@ export default function CardList() {
     loading,
     error,
   } = useFetch<CardType[]>([], "/cards", "GET");
+
+  // Get the setCards function from the store
+  const setCards = useCardsStore((state) => state.setCards);
+
+  // Update the store with the Cards information.
+  setCards(cards);
+
+  const cards = useCardsStore((state) => state.cards);
 
   return (
     <div>

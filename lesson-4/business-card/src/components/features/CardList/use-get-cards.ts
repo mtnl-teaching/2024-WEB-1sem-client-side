@@ -1,11 +1,5 @@
 import { useEffect, useState } from "react";
-
-type CardType = {
-  id: number;
-  name: string;
-  job: string;
-  website: string;
-};
+import { CardType } from "../../../types/CardType";
 
 type useGetCardsType = [
   CardType[],
