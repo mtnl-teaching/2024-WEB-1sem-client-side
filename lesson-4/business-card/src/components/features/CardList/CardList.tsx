@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import CardItem from "../atoms/CardItem";
+import CardItem from "../../atoms/CardItem";
 
 type CardType = {
   id: number;

@@ -1,8 +1,8 @@
 import "./App.css";
 import PrimaryButton from "./components/atoms/PrimaryButton";
-import CardForm from "./components/CardForm";
-import CardList from "./components/CardList/CardList";
-import CountExample from "./components/CountExample";
+import CardForm from "./components/features/CardForm";
+import CardList from "./components/features/CardList/CardList";
+import CountExample from "./components/features/CountExample";
 
 function App() {
   const handleCreateNew = () => {

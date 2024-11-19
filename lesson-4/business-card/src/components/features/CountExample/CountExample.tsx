@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PrimaryButton from "../atoms/PrimaryButton";
+import PrimaryButton from "../../atoms/PrimaryButton";
 
 function CountExample() {
   const [count, setCount] = useState<number | null>(null);
