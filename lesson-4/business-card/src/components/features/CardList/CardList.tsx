@@ -7,7 +7,11 @@ type CardType = {
 };
 
 export default function CardList() {
-  const [cards, setCards] = useFetch<CardType[]>([], "/cards", "GET");
+  const {
+    data: cards,
+    loading,
+    error,
+  } = useFetch<CardType[]>([], "/cards", "GET");
 
   return (
     <div>

@@ -8,7 +8,7 @@ export default function useFetch<T>(
   initialValue: T,
   subPath: string,
   method: HTTP_METHOD,
-  body: unknown,
+  body?: unknown,
   headers?: HeadersInit
 ): { data: T; loading: boolean; error: string } {
   const [loading, setLoading] = useState(false);
