@@ -5,11 +5,7 @@ export default function CardForm() {
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log("Hello from submit");
     const formData = new FormData(event.currentTarget);
-    console.log(formData.get("name"));
-    console.log(formData.get("website"));
-    console.log(formData.get("job"));
 
     const response = await fetch("http://localhost:3000/cards", {
       method: "POST",
@@ -23,7 +19,6 @@ export default function CardForm() {
         website: formData.get("website"),
       }),
     });
-    console.log(response);
     const body = await response.json();
     console.log(body);
   }
@@ -34,9 +29,7 @@ export default function CardForm() {
 
   return (
     <div>
-      <hr />
       <h1>Create a new Business Card</h1>
-      <hr />
       {/* BUSINESS CARD needs to create: A name, job, website */}
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
