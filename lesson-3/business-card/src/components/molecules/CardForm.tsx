@@ -3,6 +3,12 @@ import React, { useState } from "react";
 export default function CardForm() {
   const [name, setName] = useState("");
 
+  function generateUniqueNumber() {
+    const timestamp = Date.now();
+    const randomNumber = Math.random();
+    return Number(`${timestamp}-${randomNumber}`);
+  }
+
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     console.log("Hello from submit");
@@ -11,13 +17,13 @@ export default function CardForm() {
     console.log(formData.get("website"));
     console.log(formData.get("job"));
 
-    const response = await fetch("http://localhost:3000/cards", {
+    const response = await fetch("/api/cards", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        id: 1,
+        id: generateUniqueNumber(),
         name: formData.get("name"),
         job: formData.get("job"),
         website: formData.get("website"),

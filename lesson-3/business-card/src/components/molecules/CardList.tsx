@@ -18,7 +18,7 @@ export default function CardList() {
   // Data fetching
   useEffect(() => {
     const getCards = async () => {
-      const response = await fetch("http://localhost:3000/cards");
+      const response = await fetch("/api/cards");
       const body = await response.json();
       console.log(body);
       setCards(body);
