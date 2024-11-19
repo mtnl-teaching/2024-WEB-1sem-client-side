@@ -7,6 +7,13 @@ type CardType = {
 };
 
 export default function CardList() {
+  // First iteration:
+  // const [cards, setCards] = useGetCards();
+
+  // Second iteration:
+  // const [cards, setCards] = useGetFetch("/cards");
+
+  // Third iteration
   const {
     data: cards,
     loading,
