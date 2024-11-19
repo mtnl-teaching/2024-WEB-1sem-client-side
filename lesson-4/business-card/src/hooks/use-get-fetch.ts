@@ -10,19 +10,23 @@ export default function useGetFetch(subPath: string) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    let isCorrect = true;
+
     const getData = async () => {
       const response = await fetch(SERVER_BASE_URL + subPath);
       const body = await response.json();
-      setData(body);
+      if (isCorrect) {
+        setData(body);
+      }
     };
 
     getData();
 
     // Cleanup function
     return () => {
-      setData([]);
+      isCorrect = false;
     };
-  }, []);
+  }, [subPath]);
 
   return [data, setData] as const;
 }
