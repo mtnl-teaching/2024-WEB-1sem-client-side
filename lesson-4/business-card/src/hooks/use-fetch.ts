@@ -8,23 +8,35 @@ export default function useFetch<T>(
   initialValue: T,
   subPath: string,
   method: HTTP_METHOD,
+  body: unknown,
   headers?: HeadersInit
-): [T, React.Dispatch<React.SetStateAction<T>>] {
+): { data: T; loading: boolean; error: string } {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [data, setData] = useState<T>(initialValue);
 
   useEffect(() => {
     let isCorrect = true;
 
     const getData = async () => {
-      const response = await fetch(SERVER_BASE_URL + subPath, {
-        method,
-        headers,
-      });
+      setLoading(true);
+      try {
+        const response = await fetch(SERVER_BASE_URL + subPath, {
+          method,
+          headers,
+          body: JSON.stringify(body),
+        });
 
-      const body = await response.json();
+        const returnedBody = await response.json();
 
-      if (isCorrect) {
-        setData(body);
+        if (isCorrect) {
+          setData(returnedBody);
+        }
+
+        setLoading(false);
+      } catch (error) {
+        // We try to stringify the error.
+        setError(`${error}`);
       }
     };
 
@@ -34,7 +46,7 @@ export default function useFetch<T>(
     return () => {
       isCorrect = false;
     };
-  }, [subPath, method, headers]);
+  }, [subPath, method, headers, body]);
 
-  return [data, setData] as const;
+  return { data, loading, error };
 }
