@@ -23,7 +23,8 @@ export default function CardList() {
   // Update the store with the Cards information.
   setCards(cards);
 
-  const cards = useCardsStore((state) => state.cards);
+  const stateCards = useCardsStore((state) => state.cards);
+  console.log(stateCards);
 
   return (
     <div>
